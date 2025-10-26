@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { AuthModel } from "../models/login.model";
 
 
 const login = async (req, res) => {
@@ -27,17 +28,15 @@ const login = async (req, res) => {
 const signup = async(req, res) => {
     try {
         const { username, email, password } = req.body;
+        AuthModel.create({
+            username: username,
+            email : email,
+            password : password
+        })
 
-        if ( username && email && password ) {
-            return res.send(
-                {
-                    status : "Ok",
-                    username,
-                    email,
-                    password
-                }
-            )
-        }
+        res.send({
+            status : "User Created Successfully."
+        })
     } catch (error) {
         return res.send({
             status : "Failed",
