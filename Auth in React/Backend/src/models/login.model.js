@@ -11,12 +11,10 @@ const authSchema = new mongoose.Schema({
     email : {
         type : String,
         required: true,
-        lowercase : true
     },
     password : {
         type : String,
         required: true,
-        lowercase : true
     }
 }, { timestamps : true })
 
@@ -28,5 +26,8 @@ authSchema.pre("save", async function (next) {
     next();
 })
 
+authSchema.methods.isPasswordCorrect = async function(password){
+    return await bcrypt.compare(password, this.password)
+}
 
 export const AuthModel = mongoose.model("Auth", authSchema)

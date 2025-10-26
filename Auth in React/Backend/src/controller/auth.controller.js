@@ -1,30 +1,26 @@
 import mongoose from "mongoose";
-import { AuthModel } from "../models/login.model";
+import { AuthModel } from "../models/login.model.js";
+import bcrypt from "bcrypt"
 
 
 const login = async (req, res) => {
-
     try {
-        const { email, password } = req.body; 
+        const { email, password } = req.body
+
+        if (!(email && password)) return res.send({warning : "Missing email or password"})
+
+        const user = await AuthModel.findOne({email: email})
+
+        const response = await user.isPasswordCorrect(password)
         
-        if (email && password) {
-            console.log("Data : ", email, password);
-            return res.send({
-                status : "ok",
-                email,
-                password
-            })
-        }
+        res.send({
+            status : "ok",
+        })
 
     } catch (error) {
-        console.log("Auth Error :: Login Failed :: ", error)
-        return {
-            status : "Failed",
-            error
-        }
+        res.send({warning : "User Not found"})
     }
-}
-
+};
 const signup = async(req, res) => {
     try {
         const { username, email, password } = req.body;
