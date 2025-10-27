@@ -3,6 +3,15 @@ import { AuthModel } from "../models/login.model.js";
 import bcrypt from "bcrypt"
 
 
+async function generateTokens(userId) {
+    
+    const user = await AuthModel.findById(userId)
+
+    if (!user) return "User Not found";
+
+    return user;
+}
+
 const login = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -24,11 +33,16 @@ const login = async (req, res) => {
 const signup = async(req, res) => {
     try {
         const { username, email, password } = req.body;
+
         AuthModel.create({
             username: username,
             email : email,
-            password : password
+            password : password,
         })
+
+        const user = await AuthModel.findOne({email})
+
+        if (!user) res.send("Error While Creating User.")
 
         res.send({
             status : "User Created Successfully."
