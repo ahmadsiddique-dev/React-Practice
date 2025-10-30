@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Link, Outlet } from 'react-router-dom'
 import Signup from './components/Signup'
+import Login from './components/Login'
 
 function App() {
   const navItems = [
