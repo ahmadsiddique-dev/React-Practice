@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Link, Outlet } from 'react-router-dom'
+import Signup from './components/Signup'
 
 function App() {
   const navItems = [
@@ -51,11 +52,11 @@ function App() {
   return (
     <>
 
-    {navItems.map((e) => {
+    {/* {navItems.map((e) => {
       // {e.status ?  : ""}
-    })}
+    })} */}
 
-    <div className="bg-orange-400  relative top-2 max-w-[95vw] m-auto grid grid-cols-12 items-center justify-between rounded-md shadow-xl">
+    {/* <div className="bg-orange-400  relative top-2 max-w-[95vw] m-auto grid grid-cols-12 items-center justify-between rounded-md shadow-xl">
   <p className="ml-2 col-span-6 md:col-span-8">Logo</p>
   <ul className=" flex  max-h-14 min-h-14 md:col-span-3 justify-evenly items-center text-white rounded-xl col-span-4 font-semibold text-md">
     <li className="cursor-pointer hover:text-gray-100"><Link to="/about">About</Link></li>
@@ -64,7 +65,8 @@ function App() {
   <button className="bg-blue-500 mr-2 max-w-20 py-1.5 font-semibold rounded-md hover:cursor-pointer hover:opacity-95 active:bg-blue-400 text-white md:col-span-1 col-span-2">
     Logout
   </button>
-</div>
+</div> */}
+<Signup/>
 <main>
   {<Outlet/>}
 </main>
