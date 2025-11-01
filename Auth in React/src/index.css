@@ -1,15 +1,1 @@
-@import "tailwindcss";
-
-
-body {
-  /* background-color: #1e3a8a; */
-  /* background-color: #0a0a0a; */
-  background-color: #2b2b2b;
-  color: #e5e5e5;
-  /* Ensure it covers the full page */
-  min-height: 100vh;
-}
-
-.custom-rounded {
-  border-radius: 19px 19px 3px 3px;
-}
+@import 'tailwindcss';
