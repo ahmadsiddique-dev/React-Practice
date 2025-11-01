@@ -86,35 +86,30 @@ function App() {
   ]
 
   const handleFile = (e) => {
-    // const selectedFile = e.target.files[0];
-    // setFile(selectedFile)
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile)
   }
   const handleSubmit = (e) => {
   e.preventDefault();
 
-  const formData = {};
+  const formData = {}; 
 
-  for (let i = 0; i < e.target.length - 2; i++) {
+  for (let i = 0; i < 4; i++) {
     const value = e.target[i].value.trim();
     const id = e.target[i].id;
-
-    if (value === "") {
-      alert("Provide all info please.");
-      throw new Error("Input field missing.");
-    }
 
     formData[id] = value;
     
   }
+
+  const form = new FormData(e.target);
+  const entries = Object.fromEntries(form.entries());
+  console.log(entries);
+  setData({...entries, ...formData});
   
 
-  // Now update state only once
-  setData(formData);
-
-  setTimeout(() => {
-    console.log("Data object: ", formData);
-    console.log("React state data: ", data);
-  },0);
+  console.log(data)
+  
 };
 
   return (
@@ -218,6 +213,7 @@ function App() {
                     Submit 
                 </button>
 
+                {/* <input className="bg-green-500 active:bg-green-600 hover:bg-green-400 text-white px-6 py-2 rounded-sm" type="submit" /> */}
                 </div>
               </div>
             </form>
